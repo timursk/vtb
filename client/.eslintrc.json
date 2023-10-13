@@ -6,7 +6,7 @@
     },
 
     "overrides": [
-        // fix "Parsing Error Cannot Find Module Next Babel in next.config.js" 
+        // fix "Parsing Error Cannot Find Module Next Babel in next.config.js"
         {
             "files": ["next.config.js"],
             "parser": "espree",
