@@ -46,3 +46,21 @@
 .disabled {
     background: #b5b5b5;
 }
+
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 40px;
+    height: 40px;
+    border-radius: 24px;
+
+    color: #fff;
+    background-color: #0A2896;
+
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

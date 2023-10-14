@@ -5,6 +5,7 @@ import classNames from 'classnames';
 interface Props {
     isActive: boolean;
     loadPercent: number;
+    count?: number;
 }
 
 const Logo = (
@@ -52,17 +53,20 @@ const getLoader = ({
     );
 };
 
-export function MarkerImage({ isActive, loadPercent }: Props) {
+export function MarkerImage({ isActive, loadPercent, count }: Props) {
     const loadColor = getLoadColor(loadPercent);
     const activeStyle = isActive ? styles.enabled : styles.disabled;
 
-    const Loader = isActive
+    const Loader = isActive && !count
         ? getLoader({ percent: loadPercent, color: loadColor })
         : null;
 
     return (
         <div className={classNames(styles.marker, activeStyle)}>
-            {Logo}
+            {count ? <div className={styles.counter}>{count}</div> : null}
+
+            {!count ? Logo : null}
+            
             {Loader}
         </div>
     );

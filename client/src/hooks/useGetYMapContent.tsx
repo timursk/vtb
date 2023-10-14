@@ -23,6 +23,7 @@ export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
 
     const searchParams = useSearchParams();
     const type = searchParams.get('type');
+    const timeComplexity = searchParams.get('timeComplexity');
 
     const handleMarkerClick = (coordinates: LngLat) => {
         changeCenter(coordinates);
@@ -66,6 +67,7 @@ export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
                             <Marker
                                 isActive={isActive}
                                 loadPercent={loadPercent}
+                                timeComplexity={!!timeComplexity}
                                 // onClick={() => {url.push('id=5')}} vtbmap.ru?id=5
                             />
                         </YMapMarker>
@@ -73,11 +75,13 @@ export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
                 };
 
                 // создание кластера
-                const cluster = (coordinates: LngLat, features: Feature[]) => (
-                    <YMapMarker coordinates={coordinates}>
-                        <Marker isActive={false} loadPercent={0} />
-                    </YMapMarker>
-                );
+                const cluster = (coordinates: LngLat, features: Feature[]) => {
+                    return (
+                        <YMapMarker coordinates={coordinates}>
+                            <Marker isActive={false} loadPercent={0} timeComplexity={false} count={features.length} />
+                        </YMapMarker>
+                    );
+                };
 
                 // фильтруем координаты
                 const filteredCoordinates =
@@ -119,7 +123,7 @@ export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
                 setYMapContent(<div />);
             }
         })();
-    }, [coordinates, geo, type]);
+    }, [coordinates, geo, type, timeComplexity]);
 
     return { YMapContent };
 }
