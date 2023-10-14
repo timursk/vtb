@@ -10,6 +10,9 @@ interface Props {
 }
 
 export function useLoadYMaps({ coordinates }: Props) {
+    const [YMaps, setYMaps] = useState(<div />);
+    const map = useRef(null);
+
     const [location, setLocation] = useState<YMapLocationRequest>({
         center: [37.623082, 55.75254],
         zoom: 10,
@@ -27,8 +30,11 @@ export function useLoadYMaps({ coordinates }: Props) {
         [setLocation]
     );
 
-    const [YMaps, setYMaps] = useState(<div />);
-    const map = useRef(null);
+    const getYMapsPos = async () => {
+        const pos = await ymaps3.geolocation.getPosition();
+
+        return pos;
+    };
 
     useEffect(() => {
         (async () => {
@@ -60,16 +66,21 @@ export function useLoadYMaps({ coordinates }: Props) {
                 );
 
                 // создание маркера
-                const marker = (feature: Feature) => (
-                    <YMapMarker coordinates={feature.geometry.coordinates}>
-                        <Marker />
-                    </YMapMarker>
-                );
+                const marker = ({ geometry, properties}: Feature) => {
+                    const { coordinates } = geometry;
+                    const { isActive, loadPercent } = properties as any;
+
+                    return (
+                        <YMapMarker coordinates={coordinates}>
+                            <Marker isActive={isActive} loadPercent={loadPercent} />
+                        </YMapMarker>
+                    );
+                };
 
                 // создание кластера
                 const cluster = (coordinates: LngLat, features: Feature[]) => (
                     <YMapMarker coordinates={coordinates}>
-                        <Marker />
+                        <Marker isActive={false} loadPercent={0} />
                     </YMapMarker>
                 );
 
@@ -77,7 +88,7 @@ export function useLoadYMaps({ coordinates }: Props) {
                     type: 'Feature',
                     id: i,
                     geometry: { coordinates: lnglat },
-                    properties: { name: 'Point of issue of orders' },
+                    properties: { isActive: (Math.random() > 0.3), loadPercent: (Math.floor(Math.random() * 100) + 1) },
                 })) as any;
 
                 // создание компонента карты
@@ -109,7 +120,7 @@ export function useLoadYMaps({ coordinates }: Props) {
         })();
     }, [location, coordinates]);
 
-    return { YMaps, map, changeCenter };
+    return { YMaps, map, changeCenter, getYMapsPos };
 }
 
 // useEffect(() => {
