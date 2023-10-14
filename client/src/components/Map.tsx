@@ -1,7 +1,11 @@
+import { useGetYMapContent } from '@/hooks/useGetYMapContent';
 import { useLoadYMaps } from '@/hooks/useLoadYMaps';
 import { LngLat } from '@yandex/ymaps3-types';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
+import { ViewButton } from './ViewButton';
+import { TimeButton } from './TimeButton';
+import { Filter } from './Filter';
 
 const coordinates: LngLat[] = [
     [37.64, 55.76],
@@ -22,9 +26,32 @@ export function Map() {
 
     // console.log(type);
 
-    const { YMaps, map } = useLoadYMaps({
+    const { YMaps, map, userGeo, offices, atms, changeCenter, getYMapsPos } =
+        useLoadYMaps({});
+
+    const { YMapContent } = useGetYMapContent({
+        // coordinates: [],
         coordinates,
+        geo: userGeo,
+        offices,
+        atms,
+        changeCenter: changeCenter,
     });
 
-    return <div style={{ width: '100%', height: '100vh' }}>{YMaps}</div>;
+    if (!YMaps) {
+        return;
+    }
+
+    return (
+        <>
+            <Filter geo={userGeo} />
+
+            <div style={{ width: '100%', height: '100vh' }}>
+                <YMaps>{YMapContent}</YMaps>
+            </div>
+            
+            <ViewButton />
+            <TimeButton />
+        </>
+    );
 }
