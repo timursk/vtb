@@ -5,7 +5,7 @@ import { Offices } from '@/types/IOffices';
 import { createQueryString } from '@/utils/helpers';
 import { LngLat } from '@yandex/ymaps3-types';
 import { Feature } from '@yandex/ymaps3-types/packages/clusterer';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
@@ -27,6 +27,8 @@ export function useGetYMapContent({
 }: Props) {
     const [YMapContent, setYMapContent] = useState(<div />);
 
+    const router = useRouter();
+    const pathname = usePathname();
     const searchParams = useSearchParams();
     const type = searchParams.get('type');
     const timeComplexity = searchParams.get('timeComplexity');
@@ -34,8 +36,8 @@ export function useGetYMapContent({
     const handleMarkerClick = (coordinates: LngLat, properties: any) => {
         changeCenter(coordinates);
 
-        // const queryString = createQueryString('idx', properties.idx, searchParams);
-        // router.push(pathname + '?' + queryString);
+        const queryString = createQueryString('idx', properties.idx, searchParams);
+        router.push(pathname + '?' + queryString);
     };
 
     useEffect(() => {
