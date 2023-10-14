@@ -19,11 +19,21 @@ import atms from '../store/atms.json';
 import { OfficesFilter } from './OfficesFilter';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { createQueryString, debounce } from '@/utils/helpers';
+import { LngLat } from '@yandex/ymaps3-types';
+import { getNearestAtm, getNearestOffice } from '@/utils/services';
+import { Offices } from '@/types/IOffices';
+import { Atm } from '@/types/IAtms';
 
-const Filter = () => {
+interface Props {
+    geo: LngLat | null;
+}
+
+const Filter = ({ geo }: Props) => {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
+
+    const type = searchParams.get('type');
 
     const [activeClass, setActiveClass] = useState(true);
 
@@ -32,14 +42,17 @@ const Filter = () => {
     const [query, setQuery] = useState('');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const changeInputQuery = useCallback(debounce((val: string) => {
-        changeFilter('search', val);
-    }, 1000), []);
+    const changeInputQuery = useCallback(
+        debounce((val: string) => {
+            changeFilter('search', val);
+        }, 1000),
+        []
+    );
 
     const handleChange = (e: any) => {
         setQuery(e.target.value);
         changeInputQuery(e.target.value);
-    }
+    };
 
     const changeFilter = (name: string, value: string) => {
         const queryString = createQueryString(name, value, searchParams);
@@ -82,7 +95,29 @@ const Filter = () => {
                 </div>
             </div>
 
-            <button className={styles.smart__button}>
+            <button
+                className={styles.smart__button}
+                onClick={() => {
+                    if (geo) {
+                        // получаем ближайший офис/банкомат и открываем карту с маршрутом
+                        if (type === 'offices') {
+                            getNearestOffice(geo, (officeGeo: Offices) => {
+                                window.open(
+                                    `https://yandex.ru/maps/?mode=routes&rtext=${geo[1]},${geo[0]}~${officeGeo.coords.lat},${officeGeo.coords.lon}`,
+                                    '_blank'
+                                );
+                            });
+                        } else {
+                            getNearestAtm(geo, (atm: Atm) => {
+                                window.open(
+                                    `https://yandex.ru/maps/?mode=routes&rtext=${geo[1]},${geo[0]}~${atm.coords.lat},${atm.coords.lon}`,
+                                    '_blank'
+                                );
+                            });
+                        }
+                    }
+                }}
+            >
                 <span>Умная навигация</span>
                 <Image src={navigationPointer} alt='navigation' />
             </button>

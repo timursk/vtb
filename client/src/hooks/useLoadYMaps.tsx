@@ -14,11 +14,11 @@ interface Props {}
 export function useLoadYMaps({}: Props) {
     const [YMaps, setYMaps] = useState<React.FC<YMapsProps> | null>(null);
     const [userGeo, setUserGeo] = useState<LngLat | null>(null);
+
     const [offices, setOffices] = useState<Offices[]>([]);
     const [atms, setAtms] = useState<Atm[]>([]);
-    const map = useRef(null);
 
-    console.log('offices', offices);
+    const map = useRef(null);
 
     // изначальная позиция карты - Москва
     const [location, setLocation] = useState<YMapLocationRequest>({
