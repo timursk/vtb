@@ -2,6 +2,10 @@ interface IOpenHours {
     days: string;
     hours: string;
 }
+interface Coords {
+    lat: number;
+    lon: number;
+}
 
 interface IOffices {
     salePointName: string;
@@ -22,4 +26,17 @@ interface IOffices {
     myBranch: boolean;
 }
 
-export type { IOffices };
+interface Offices {
+    sale_point_name: string;
+    open_hours: IOpenHours[];
+    open_hours_individual: IOpenHours[];
+    status: string;
+    rko: boolean;
+
+    office_type: string;
+    sale_point_format: string;
+    raw_value: string;
+    coords: Coords;
+}
+
+export type { IOffices, Offices, Coords };

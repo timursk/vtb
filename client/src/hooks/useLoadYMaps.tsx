@@ -1,3 +1,6 @@
+import { Atm } from '@/types/IAtms';
+import { Offices } from '@/types/IOffices';
+import { getAtms, getOffices } from '@/utils/services';
 import { LngLat, YMapLocationRequest } from '@yandex/ymaps3-types';
 import React, { useCallback } from 'react';
 import { useEffect, useRef, useState } from 'react';
@@ -11,7 +14,11 @@ interface Props {}
 export function useLoadYMaps({}: Props) {
     const [YMaps, setYMaps] = useState<React.FC<YMapsProps> | null>(null);
     const [userGeo, setUserGeo] = useState<LngLat | null>(null);
+    const [offices, setOffices] = useState<Offices[]>([]);
+    const [atms, setAtms] = useState<Atm[]>([]);
     const map = useRef(null);
+
+    console.log('offices', offices);
 
     // изначальная позиция карты - Москва
     const [location, setLocation] = useState<YMapLocationRequest>({
@@ -26,7 +33,7 @@ export function useLoadYMaps({}: Props) {
             setLocation((prev) => ({
                 ...prev,
                 center: newLocation,
-                zoom: 15
+                zoom: 15,
             }));
         },
         [setLocation]
@@ -61,7 +68,9 @@ export function useLoadYMaps({}: Props) {
                     const geo = (await getYMapsPos())?.coords;
 
                     if (geo) {
-                        setUserGeo(geo);
+                        // setUserGeo(geo);
+                        // ! захардкожено для отладки
+                        setUserGeo([37.623082, 55.75254]);
                     }
                 }
 
@@ -92,9 +101,16 @@ export function useLoadYMaps({}: Props) {
     // при получении координат юзера двигаем карту
     useEffect(() => {
         if (userGeo) {
-            changeCenter(userGeo);
+            // changeCenter(userGeo);
+            // ! захардкожено для отладки
+            changeCenter([37.623082, 55.75254]);
+            
+            // getOffices(userGeo, (offices: IOffices[]) => setOffices(offices));
+            // ! захардкожено для отладки
+            getOffices([37.623082, 55.75254], (offices: Offices[]) => setOffices(offices));
+            getAtms([37.623082, 55.75254], (atms: Atm[]) => setAtms(atms));
         }
     }, [userGeo, changeCenter]);
 
-    return { YMaps, map, userGeo, changeCenter, getYMapsPos };
+    return { YMaps, map, userGeo, offices, atms, changeCenter, getYMapsPos };
 }

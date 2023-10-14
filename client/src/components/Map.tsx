@@ -23,16 +23,18 @@ export function Map() {
 
     // console.log(type);
 
-    const { YMaps, map, userGeo, changeCenter, getYMapsPos } = useLoadYMaps({
-        coordinates,
-    });
+    const { YMaps, map, userGeo, offices, atms, changeCenter, getYMapsPos } =
+        useLoadYMaps({});
 
     console.log(map);
 
     const { YMapContent } = useGetYMapContent({
+        // coordinates: [],
         coordinates,
         geo: userGeo,
-        changeCenter: changeCenter
+        offices,
+        atms,
+        changeCenter: changeCenter,
     });
 
     if (!YMaps) {
@@ -41,9 +43,7 @@ export function Map() {
 
     return (
         <div style={{ width: '100%', height: '100vh' }}>
-            <YMaps>
-                {YMapContent}
-            </YMaps>
+            <YMaps>{YMapContent}</YMaps>
         </div>
     );
 }

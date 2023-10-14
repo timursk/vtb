@@ -1,5 +1,8 @@
 import { Marker } from '@/components/Marker';
 import { UserMarker } from '@/components/UserMarker';
+import { Atm } from '@/types/IAtms';
+import { Offices } from '@/types/IOffices';
+import { createQueryString } from '@/utils/helpers';
 import { LngLat } from '@yandex/ymaps3-types';
 import { Feature } from '@yandex/ymaps3-types/packages/clusterer';
 import { useSearchParams } from 'next/navigation';
@@ -10,23 +13,29 @@ import ReactDOM from 'react-dom';
 interface Props {
     coordinates: LngLat[];
     geo: LngLat | null;
+    offices: Offices[];
+    atms: Atm[];
     changeCenter: (val: LngLat) => void;
 }
 
-// const searchParams = useSearchParams();
-//     useEffect(() => {
-//         setType(searchParams.get('type'));
-//     }, [searchParams]);
-
-export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
+export function useGetYMapContent({
+    coordinates,
+    geo,
+    offices,
+    atms,
+    changeCenter,
+}: Props) {
     const [YMapContent, setYMapContent] = useState(<div />);
 
     const searchParams = useSearchParams();
     const type = searchParams.get('type');
     const timeComplexity = searchParams.get('timeComplexity');
 
-    const handleMarkerClick = (coordinates: LngLat) => {
+    const handleMarkerClick = (coordinates: LngLat, properties: any) => {
         changeCenter(coordinates);
+
+        // const queryString = createQueryString('idx', properties.idx, searchParams);
+        // router.push(pathname + '?' + queryString);
     };
 
     useEffect(() => {
@@ -61,14 +70,13 @@ export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
                         <YMapMarker
                             coordinates={coordinates}
                             onClick={() => {
-                                handleMarkerClick(coordinates);
+                                handleMarkerClick(coordinates, properties);
                             }}
                         >
                             <Marker
                                 isActive={isActive}
                                 loadPercent={loadPercent}
                                 timeComplexity={!!timeComplexity}
-                                // onClick={() => {url.push('id=5')}} vtbmap.ru?id=5
                             />
                         </YMapMarker>
                     );
@@ -78,24 +86,34 @@ export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
                 const cluster = (coordinates: LngLat, features: Feature[]) => {
                     return (
                         <YMapMarker coordinates={coordinates}>
-                            <Marker isActive={true} loadPercent={0} timeComplexity={false} count={features.length} />
+                            <Marker
+                                isActive={true}
+                                loadPercent={0}
+                                timeComplexity={false}
+                                count={features.length}
+                            />
                         </YMapMarker>
                     );
                 };
 
                 // фильтруем координаты
-                const filteredCoordinates =
-                    type === 'offices' ? coordinates.slice(0, 2) : coordinates;
+                const filteredCoordinates = type === 'offices' ? offices : atms;
 
-                const points = filteredCoordinates.map((lnglat, i) => ({
-                    type: 'Feature',
-                    id: i,
-                    geometry: { coordinates: lnglat },
-                    properties: {
-                        isActive: Math.random() > 0.3,
-                        loadPercent: Math.floor(Math.random() * 100) + 1,
-                    },
-                })) as any;
+                // проходим по данным и создаём объекты на основе координат
+                const points = filteredCoordinates?.map((item, i) => {
+                    const coordinates = [item.coords.lon, item.coords.lat];
+
+                    return {
+                        type: 'Feature',
+                        id: i,
+                        geometry: { coordinates },
+                        properties: {
+                            isActive: Math.random() > 0.3,
+                            loadPercent: Math.floor(Math.random() * 100) + 1,
+                            idx: i
+                        },
+                    };
+                }) as any;
 
                 // создание компонента карты
                 setYMapContent(() => (
@@ -105,12 +123,14 @@ export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
                             <YMapGeolocationControl />
                         </YMapControls>
 
-                        <YMapClusterer
-                            features={points}
-                            method={clusterByGrid({ gridSize: 64 })}
-                            marker={marker}
-                            cluster={cluster}
-                        />
+                        {offices ? (
+                            <YMapClusterer
+                                features={points}
+                                method={clusterByGrid({ gridSize: 64 })}
+                                marker={marker}
+                                cluster={cluster}
+                            />
+                        ) : null}
 
                         {geo ? (
                             <YMapMarker coordinates={geo}>
@@ -123,7 +143,7 @@ export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
                 setYMapContent(<div />);
             }
         })();
-    }, [coordinates, geo, type, timeComplexity]);
+    }, [coordinates, geo, type, timeComplexity, offices, atms]);
 
     return { YMapContent };
 }
