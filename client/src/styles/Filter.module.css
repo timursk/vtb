@@ -2,7 +2,7 @@
     display: flex;
     position: absolute;
     width: 352px;
-    height: 870px;
+    height: calc(100vh - 60px);
     padding: 16px 12px;
     flex-direction: column;
     gap: 10px;
