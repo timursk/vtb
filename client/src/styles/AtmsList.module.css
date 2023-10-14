@@ -1,0 +1,44 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  /* height: 300px;
+  overflow: auto; */
+}
+
+.list li {
+  display: flex;
+  flex-direction: row;
+  margin: 12px 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.list li:hover {
+  border-color: transparent;
+  color: #949494;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+  width: 220px;
+}
+
+.block__text {
+}
+
+.block__text_sec {
+  color: #949494;
+  margin-top: 4px;
+}
+
+.second__block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.second__block span {
+  color: #0d69f2;
+}

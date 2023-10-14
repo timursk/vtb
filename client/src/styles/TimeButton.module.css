@@ -1,0 +1,23 @@
+.time__button {
+  display: flex;
+  height: 56px;
+  padding: 10px 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: none;
+  background: #fff;
+  box-shadow:
+    0px 4px 30px 0px rgba(10, 40, 150, 0.1),
+    0px 1px 3px 0px rgba(10, 40, 150, 0.05);
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 100px 32px;
+}
+
+.time__button span {
+  color: var(--primary, rgba(10, 40, 150, 1));
+  margin-left: 10px;
+}
