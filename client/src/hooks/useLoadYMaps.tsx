@@ -2,6 +2,7 @@ import { Marker } from '@/components/Marker';
 import { UserMarker } from '@/components/UserMarker';
 import { LngLat, YMapLocationRequest } from '@yandex/ymaps3-types';
 import { Feature } from '@yandex/ymaps3-types/packages/clusterer';
+import { useSearchParams } from 'next/navigation';
 import React, { useCallback } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
@@ -11,8 +12,13 @@ interface Props {
 }
 
 export function useLoadYMaps({ coordinates }: Props) {
+    const searchParams = useSearchParams();
+
     const [YMaps, setYMaps] = useState(<div />);
     const [userCoords, setUserCoords] = useState<LngLat | null>(null);
+
+    const [type, setType] = useState(searchParams.get('type'));
+    console.log('type', type);
 
     const map = useRef(null);
 
@@ -21,6 +27,10 @@ export function useLoadYMaps({ coordinates }: Props) {
         zoom: 10,
         duration: 1000,
     });
+
+    useEffect(() => {
+        setType(searchParams.get('type'))
+    }, [searchParams]);
 
     // перемещения центра карты
     const changeCenter = useCallback(
@@ -78,6 +88,7 @@ export function useLoadYMaps({ coordinates }: Props) {
                             <Marker
                                 isActive={isActive}
                                 loadPercent={loadPercent}
+                                // onClick={() => {url.push('id=5')}} vtbmap.ru?id=5
                             />
                         </YMapMarker>
                     );
@@ -90,7 +101,7 @@ export function useLoadYMaps({ coordinates }: Props) {
                     </YMapMarker>
                 );
 
-                const points = coordinates.map((lnglat, i) => ({
+                const points = (type ? coordinates.slice(0, 3) : coordinates).map((lnglat, i) => ({
                     type: 'Feature',
                     id: i,
                     geometry: { coordinates: lnglat },
@@ -142,11 +153,12 @@ export function useLoadYMaps({ coordinates }: Props) {
                 setYMaps(<div />);
             }
         })();
-    }, [location, coordinates, userCoords]);
+    }, [location, coordinates, userCoords, type]);
 
     useEffect(() => {
         console.log(userCoords);
         if (userCoords) {
+            console.log('AAAAAAA', userCoords);
             changeCenter(userCoords);
         }
     }, [userCoords, changeCenter]);
