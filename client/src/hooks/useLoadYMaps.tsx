@@ -54,7 +54,7 @@ export function useLoadYMaps({ coordinates }: Props) {
                 setYMaps(<div />);
             }
         })();
-    }, []);
+    }, [coordinates]);
 
     return { YMaps, map };
 }
