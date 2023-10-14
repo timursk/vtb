@@ -17,8 +17,12 @@ import vtbLogo from '../assets/vtb.svg';
 import offices from '../store/offices.json';
 import atms from '../store/atms.json';
 import { OfficesFilter } from './OfficesFilter';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Filter = () => {
+    const router = useRouter()
+    const pathname = usePathname()
+
     const [activeClass, setActiveClass] = useState(true);
     const [activeTab, setActiveTab] = useState(false);
     const [query, setQuery] = useState('');
@@ -75,7 +79,10 @@ const Filter = () => {
                                     : `${styles.inactive_button}`
                             }`}
                             value='offices'
-                            onClick={() => setActiveClass(true)}
+                            onClick={() => {
+                                setActiveClass(true);
+                                router.push(pathname + '?' + 'type=offices');
+                            }}
                         >
                             Отделения
                         </Tabs.Trigger>
