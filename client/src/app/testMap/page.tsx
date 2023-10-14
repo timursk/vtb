@@ -16,7 +16,7 @@ export default function TestMap() {
         <>
             <div>TEST</div>
             <Script
-                src="https://api-maps.yandex.ru/v3/?apikey=9c0f6eee-2954-4fd4-be04-fef1fafef075&lang=ru_RU"
+                src='https://api-maps.yandex.ru/v3/?apikey=9c0f6eee-2954-4fd4-be04-fef1fafef075&lang=ru_RU'
                 onLoad={() => {
                     setIsLoaded(true);
                 }}

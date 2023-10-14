@@ -26,7 +26,7 @@ export async function initMap() {
         controls: controlsMap,
         cluster: clusterMap,
         defaultMarker: defaulMarkerMap,
-    } 
+    };
 
     return map;
 }
