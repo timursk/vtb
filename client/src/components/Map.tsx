@@ -1,3 +1,4 @@
+import { useGetYMapContent } from '@/hooks/useGetYMapContent';
 import { useLoadYMaps } from '@/hooks/useLoadYMaps';
 import { LngLat } from '@yandex/ymaps3-types';
 import { useSearchParams } from 'next/navigation';
@@ -22,9 +23,24 @@ export function Map() {
 
     // console.log(type);
 
-    const { YMaps, map } = useLoadYMaps({
+    const { YMaps, map, userGeo, changeCenter, getYMapsPos } = useLoadYMaps({
         coordinates,
     });
 
-    return <div style={{ width: '100%', height: '100vh' }}>{YMaps}</div>;
+    const { YMapContent } = useGetYMapContent({
+        coordinates,
+        geo: userGeo,
+    });
+
+    if (!YMaps) {
+        return;
+    }
+
+    return (
+        <div style={{ width: '100%', height: '100vh' }}>
+            <YMaps>
+                {YMapContent}
+            </YMaps>
+        </div>
+    );
 }

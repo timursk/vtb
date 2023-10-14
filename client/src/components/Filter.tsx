@@ -33,13 +33,11 @@ const Filter = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const changeInputQuery = useCallback(debounce((val: string) => {
-        console.log('changeInputQuery');
         changeFilter('search', val);
     }, 1000), []);
 
     const handleChange = (e: any) => {
         setQuery(e.target.value);
-        console.log(e.target.value);
         changeInputQuery(e.target.value);
     }
 
