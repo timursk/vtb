@@ -1,8 +1,6 @@
 import { useLoadYMaps } from '@/hooks/useLoadYMaps';
 import { LngLat } from '@yandex/ymaps3-types';
 import React from 'react';
-import { useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
 
 const coordinates: LngLat[] = [
     [37.64, 55.76],
