@@ -1,3 +1,4 @@
+import { Marker } from '@/components/Marker';
 import { LngLat } from '@yandex/ymaps3-types';
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
@@ -28,10 +29,6 @@ export function useLoadYMaps({ coordinates }: Props) {
                     YMapControl,
                 } = reactify.module(ymaps3);
 
-                const markerElement = (
-                    <div className='marker-class'>{`I'm marker!`}</div>
-                );
-
                 setYMaps(() => (
                     <YMap
                         location={{
@@ -48,7 +45,7 @@ export function useLoadYMaps({ coordinates }: Props) {
 
                         {coordinates.map((lnglat, idx) => (
                             <YMapMarker key={idx} coordinates={lnglat}>
-                                {markerElement}
+                                <Marker />
                             </YMapMarker>
                         ))}
                     </YMap>
