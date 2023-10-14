@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Image from 'next/image';
 import * as Tabs from '@radix-ui/react-tabs';
 
@@ -17,19 +17,36 @@ import vtbLogo from '../assets/vtb.svg';
 import offices from '../store/offices.json';
 import atms from '../store/atms.json';
 import { OfficesFilter } from './OfficesFilter';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { createQueryString, debounce } from '@/utils/helpers';
 
 const Filter = () => {
-    const router = useRouter()
-    const pathname = usePathname()
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     const [activeClass, setActiveClass] = useState(true);
+
     const [activeTab, setActiveTab] = useState(false);
+
     const [query, setQuery] = useState('');
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const changeInputQuery = useCallback(debounce((val: string) => {
+        console.log('changeInputQuery');
+        changeFilter('search', val);
+    }, 1000), []);
 
     const handleChange = (e: any) => {
         setQuery(e.target.value);
         console.log(e.target.value);
+        changeInputQuery(e.target.value);
+    }
+
+    const changeFilter = (name: string, value: string) => {
+        const queryString = createQueryString(name, value, searchParams);
+
+        router.push(pathname + '?' + queryString);
     };
 
     return (
@@ -43,6 +60,7 @@ const Filter = () => {
                     alt='logo'
                 />
             </div>
+
             <div className={styles.search}>
                 <label className={styles.label} htmlFor=''>
                     <input
@@ -65,10 +83,12 @@ const Filter = () => {
                     <Image src={settings} alt='settings' />
                 </div>
             </div>
+
             <button className={styles.smart__button}>
                 <span>Умная навигация</span>
                 <Image src={navigationPointer} alt='navigation' />
             </button>
+
             <div>
                 <Tabs.Root style={{ height: '200px' }} defaultValue='offices'>
                     <Tabs.List className={styles.filters_button}>
@@ -81,11 +101,13 @@ const Filter = () => {
                             value='offices'
                             onClick={() => {
                                 setActiveClass(true);
-                                router.push(pathname + '?' + 'type=offices');
+
+                                changeFilter('type', 'offices');
                             }}
                         >
                             Отделения
                         </Tabs.Trigger>
+
                         <Tabs.Trigger
                             className={`${styles.atms} ${
                                 activeClass
@@ -93,17 +115,24 @@ const Filter = () => {
                                     : `${styles.active_button}`
                             }`}
                             value='atms'
-                            onClick={() => setActiveClass(false)}
+                            onClick={() => {
+                                setActiveClass(false);
+
+                                changeFilter('type', 'atms');
+                            }}
                         >
                             Банкоматы
                         </Tabs.Trigger>
                     </Tabs.List>
+
                     <div className={styles.range}>
                         <span>В радиусе 1 км</span>
                     </div>
+
                     <Tabs.Content value='offices'>
                         <OfficesList offices={offices} />
                     </Tabs.Content>
+
                     <Tabs.Content value='atms'>
                         <AtmsList atms={...atms} />
                     </Tabs.Content>
