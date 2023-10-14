@@ -78,7 +78,7 @@ export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
                 const cluster = (coordinates: LngLat, features: Feature[]) => {
                     return (
                         <YMapMarker coordinates={coordinates}>
-                            <Marker isActive={false} loadPercent={0} timeComplexity={false} count={features.length} />
+                            <Marker isActive={true} loadPercent={0} timeComplexity={false} count={features.length} />
                         </YMapMarker>
                     );
                 };
