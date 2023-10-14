@@ -1,4 +1,5 @@
 import { Marker } from '@/components/Marker';
+import { UserMarker } from '@/components/UserMarker';
 import { LngLat, YMapLocationRequest } from '@yandex/ymaps3-types';
 import { Feature } from '@yandex/ymaps3-types/packages/clusterer';
 import React, { useCallback } from 'react';
@@ -11,6 +12,8 @@ interface Props {
 
 export function useLoadYMaps({ coordinates }: Props) {
     const [YMaps, setYMaps] = useState(<div />);
+    const [userCoords, setUserCoords] = useState<LngLat | null>(null);
+
     const map = useRef(null);
 
     const [location, setLocation] = useState<YMapLocationRequest>({
@@ -66,13 +69,16 @@ export function useLoadYMaps({ coordinates }: Props) {
                 );
 
                 // создание маркера
-                const marker = ({ geometry, properties}: Feature) => {
+                const marker = ({ geometry, properties }: Feature) => {
                     const { coordinates } = geometry;
                     const { isActive, loadPercent } = properties as any;
 
                     return (
                         <YMapMarker coordinates={coordinates}>
-                            <Marker isActive={isActive} loadPercent={loadPercent} />
+                            <Marker
+                                isActive={isActive}
+                                loadPercent={loadPercent}
+                            />
                         </YMapMarker>
                     );
                 };
@@ -88,8 +94,20 @@ export function useLoadYMaps({ coordinates }: Props) {
                     type: 'Feature',
                     id: i,
                     geometry: { coordinates: lnglat },
-                    properties: { isActive: (Math.random() > 0.3), loadPercent: (Math.floor(Math.random() * 100) + 1) },
+                    properties: {
+                        isActive: Math.random() > 0.3,
+                        loadPercent: Math.floor(Math.random() * 100) + 1,
+                    },
                 })) as any;
+
+                // сохраняем координаты юзера
+                if (!userCoords) {
+                    const geo = (await getYMapsPos())?.coords;
+
+                    if (geo) {
+                        setUserCoords(geo);
+                    }
+                }
 
                 // создание компонента карты
                 setYMaps(() => (
@@ -103,7 +121,7 @@ export function useLoadYMaps({ coordinates }: Props) {
 
                         <YMapControls position='right'>
                             <YMapZoomControl />
-                            <YMapGeolocationControl />
+                            {/* <YMapGeolocationControl onGeolocatePosition={(pos) => console.log(pos)} ref={geoControl} /> */}
                         </YMapControls>
 
                         <YMapClusterer
@@ -112,13 +130,34 @@ export function useLoadYMaps({ coordinates }: Props) {
                             marker={marker}
                             cluster={cluster}
                         />
+
+                        {userCoords ? (
+                            <YMapMarker coordinates={userCoords}>
+                                <UserMarker></UserMarker>
+                            </YMapMarker>
+                        ) : null}
                     </YMap>
                 ));
             } catch (e) {
                 setYMaps(<div />);
             }
         })();
-    }, [location, coordinates]);
+    }, [location, coordinates, userCoords]);
+
+    useEffect(() => {
+        console.log(userCoords);
+        
+        if (userCoords) {
+            changeCenter(userCoords);
+        }
+    }, [userCoords, changeCenter]);
+
+    // useEffect(() => {
+    //     console.log(geoControl);
+    //     if (geoControl.current) {
+    //         console.log(geoControl.current);
+    //     }
+    // }, [YMaps]);
 
     return { YMaps, map, changeCenter, getYMapsPos };
 }
