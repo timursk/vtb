@@ -1,11 +1,16 @@
 import { MarkerImage } from './MarkerImage';
 
-interface Props {}
+interface Props {
+    isActive: boolean;
+    loadPercent?: number;
+}
 
-export function Marker() {
+export function Marker({ isActive, loadPercent }: Props) {
+    loadPercent = loadPercent || 0;
+    
     return (
         <div>
-            <MarkerImage isActive={true} loadPercent={70} />
+            <MarkerImage isActive={isActive} loadPercent={loadPercent} />
         </div>
     );
 }
