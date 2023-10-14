@@ -10,6 +10,7 @@ import ReactDOM from 'react-dom';
 interface Props {
     coordinates: LngLat[];
     geo: LngLat | null;
+    changeCenter: (val: LngLat) => void;
 }
 
 // const searchParams = useSearchParams();
@@ -17,11 +18,15 @@ interface Props {
 //         setType(searchParams.get('type'));
 //     }, [searchParams]);
 
-export function useGetYMapContent({ coordinates, geo }: Props) {
+export function useGetYMapContent({ coordinates, geo, changeCenter }: Props) {
     const [YMapContent, setYMapContent] = useState(<div />);
 
     const searchParams = useSearchParams();
     const type = searchParams.get('type');
+
+    const handleMarkerClick = (coordinates: LngLat) => {
+        changeCenter(coordinates);
+    };
 
     useEffect(() => {
         (async () => {
@@ -34,10 +39,7 @@ export function useGetYMapContent({ coordinates, geo }: Props) {
                 const reactify = ymaps3React.reactify.bindTo(React, ReactDOM);
 
                 // получение компонентов
-                const {
-                    YMapMarker,
-                    YMapControls,
-                } = reactify.module(ymaps3);
+                const { YMapMarker, YMapControls } = reactify.module(ymaps3);
 
                 // инициализация модулей
                 const { YMapZoomControl, YMapGeolocationControl } =
@@ -55,7 +57,12 @@ export function useGetYMapContent({ coordinates, geo }: Props) {
                     const { isActive, loadPercent } = properties as any;
 
                     return (
-                        <YMapMarker coordinates={coordinates}>
+                        <YMapMarker
+                            coordinates={coordinates}
+                            onClick={() => {
+                                handleMarkerClick(coordinates);
+                            }}
+                        >
                             <Marker
                                 isActive={isActive}
                                 loadPercent={loadPercent}

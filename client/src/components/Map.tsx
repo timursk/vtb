@@ -27,9 +27,12 @@ export function Map() {
         coordinates,
     });
 
+    console.log(map);
+
     const { YMapContent } = useGetYMapContent({
         coordinates,
         geo: userGeo,
+        changeCenter: changeCenter
     });
 
     if (!YMaps) {

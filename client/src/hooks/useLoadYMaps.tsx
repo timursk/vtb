@@ -26,6 +26,7 @@ export function useLoadYMaps({}: Props) {
             setLocation((prev) => ({
                 ...prev,
                 center: newLocation,
+                zoom: 15
             }));
         },
         [setLocation]
