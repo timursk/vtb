@@ -24,18 +24,7 @@ export default function TestMap() {
                 }}
             ></Script>
 
-            {isLoaded ? (
-                <>
-                    <Filter />
-                    
-                    <Map />
-
-                    <ViewButton />
-                    <TimeButton />
-                </>
-            ) : (
-                <span>ЗАГРУЗКА...</span>
-            )}
+            {isLoaded ? <Map /> : <span>ЗАГРУЗКА...</span>}
         </>
     );
 }
