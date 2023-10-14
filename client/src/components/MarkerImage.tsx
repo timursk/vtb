@@ -56,7 +56,9 @@ export function MarkerImage({ isActive, loadPercent }: Props) {
     const loadColor = getLoadColor(loadPercent);
     const activeStyle = isActive ? styles.enabled : styles.disabled;
 
-    const Loader = isActive ? getLoader({ percent: loadPercent, color: loadColor }) : null;
+    const Loader = isActive
+        ? getLoader({ percent: loadPercent, color: loadColor })
+        : null;
 
     return (
         <div className={classNames(styles.marker, activeStyle)}>
