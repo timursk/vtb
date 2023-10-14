@@ -7,7 +7,7 @@ interface Props {
 
 export function Marker({ isActive, loadPercent }: Props) {
     loadPercent = loadPercent || 0;
-
+    
     return (
         <div>
             <MarkerImage isActive={isActive} loadPercent={loadPercent} />

@@ -146,7 +146,6 @@ export function useLoadYMaps({ coordinates }: Props) {
 
     useEffect(() => {
         console.log(userCoords);
-
         if (userCoords) {
             changeCenter(userCoords);
         }
