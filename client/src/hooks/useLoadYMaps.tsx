@@ -7,155 +7,159 @@ import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 interface Props {
-  coordinates: LngLat[];
+    coordinates: LngLat[];
 }
 
 export function useLoadYMaps({ coordinates }: Props) {
-  const [YMaps, setYMaps] = useState(<div />);
-  const [userCoords, setUserCoords] = useState<LngLat | null>(null);
+    const [YMaps, setYMaps] = useState(<div />);
+    const [userCoords, setUserCoords] = useState<LngLat | null>(null);
 
-  const map = useRef(null);
+    const map = useRef(null);
 
-  const [location, setLocation] = useState<YMapLocationRequest>({
-    center: [37.623082, 55.75254],
-    zoom: 10,
-    duration: 1000,
-  });
+    const [location, setLocation] = useState<YMapLocationRequest>({
+        center: [37.623082, 55.75254],
+        zoom: 10,
+        duration: 1000,
+    });
 
-  // перемещения центра карты
-  const changeCenter = useCallback(
-    (newLocation: LngLat) => {
-      setLocation((prev) => ({
-        ...prev,
-        center: newLocation,
-      }));
-    },
-    [setLocation]
-  );
+    // перемещения центра карты
+    const changeCenter = useCallback(
+        (newLocation: LngLat) => {
+            setLocation((prev) => ({
+                ...prev,
+                center: newLocation,
+            }));
+        },
+        [setLocation]
+    );
 
-  const getYMapsPos = async () => {
-    const pos = await ymaps3.geolocation.getPosition();
+    const getYMapsPos = async () => {
+        const pos = await ymaps3.geolocation.getPosition();
 
-    return pos;
-  };
+        return pos;
+    };
 
-  useEffect(() => {
-    (async () => {
-      try {
-        // инициализация модулей
-        const [ymaps3React] = await Promise.all([
-          ymaps3.import('@yandex/ymaps3-reactify'),
-          ymaps3.ready,
-        ]);
-        const reactify = ymaps3React.reactify.bindTo(React, ReactDOM);
+    useEffect(() => {
+        (async () => {
+            try {
+                // инициализация модулей
+                const [ymaps3React] = await Promise.all([
+                    ymaps3.import('@yandex/ymaps3-reactify'),
+                    ymaps3.ready,
+                ]);
+                const reactify = ymaps3React.reactify.bindTo(React, ReactDOM);
 
-        // получение компонентов
-        const {
-          YMap,
-          YMapDefaultSchemeLayer,
-          YMapDefaultFeaturesLayer,
-          YMapMarker,
-          YMapControls,
-        } = reactify.module(ymaps3);
+                // получение компонентов
+                const {
+                    YMap,
+                    YMapDefaultSchemeLayer,
+                    YMapDefaultFeaturesLayer,
+                    YMapMarker,
+                    YMapControls,
+                } = reactify.module(ymaps3);
 
-        // инициализация модулей
-        const { YMapZoomControl, YMapGeolocationControl } = reactify.module(
-          await ymaps3.import('@yandex/ymaps3-controls@0.0.1')
-        );
+                // инициализация модулей
+                const { YMapZoomControl, YMapGeolocationControl } =
+                    reactify.module(
+                        await ymaps3.import('@yandex/ymaps3-controls@0.0.1')
+                    );
 
-        const { YMapClusterer, clusterByGrid } = reactify.module(
-          await ymaps3.import('@yandex/ymaps3-clusterer@0.0.1')
-        );
+                const { YMapClusterer, clusterByGrid } = reactify.module(
+                    await ymaps3.import('@yandex/ymaps3-clusterer@0.0.1')
+                );
 
-        // создание маркера
-        const marker = ({ geometry, properties }: Feature) => {
-          const { coordinates } = geometry;
-          const { isActive, loadPercent } = properties as any;
+                // создание маркера
+                const marker = ({ geometry, properties }: Feature) => {
+                    const { coordinates } = geometry;
+                    const { isActive, loadPercent } = properties as any;
 
-          return (
-            <YMapMarker coordinates={coordinates}>
-              <Marker isActive={isActive} loadPercent={loadPercent} />
-            </YMapMarker>
-          );
-        };
+                    return (
+                        <YMapMarker coordinates={coordinates}>
+                            <Marker
+                                isActive={isActive}
+                                loadPercent={loadPercent}
+                            />
+                        </YMapMarker>
+                    );
+                };
 
-        // создание кластера
-        const cluster = (coordinates: LngLat, features: Feature[]) => (
-          <YMapMarker coordinates={coordinates}>
-            <Marker isActive={false} loadPercent={0} />
-          </YMapMarker>
-        );
+                // создание кластера
+                const cluster = (coordinates: LngLat, features: Feature[]) => (
+                    <YMapMarker coordinates={coordinates}>
+                        <Marker isActive={false} loadPercent={0} />
+                    </YMapMarker>
+                );
 
-        const points = coordinates.map((lnglat, i) => ({
-          type: 'Feature',
-          id: i,
-          geometry: { coordinates: lnglat },
-          properties: {
-            isActive: Math.random() > 0.3,
-            loadPercent: Math.floor(Math.random() * 100) + 1,
-          },
-        })) as any;
+                const points = coordinates.map((lnglat, i) => ({
+                    type: 'Feature',
+                    id: i,
+                    geometry: { coordinates: lnglat },
+                    properties: {
+                        isActive: Math.random() > 0.3,
+                        loadPercent: Math.floor(Math.random() * 100) + 1,
+                    },
+                })) as any;
 
-        // сохраняем координаты юзера
-        if (!userCoords) {
-          const geo = (await getYMapsPos())?.coords;
+                // сохраняем координаты юзера
+                if (!userCoords) {
+                    const geo = (await getYMapsPos())?.coords;
 
-          if (geo) {
-            setUserCoords(geo);
-          }
+                    if (geo) {
+                        setUserCoords(geo);
+                    }
+                }
+
+                // создание компонента карты
+                setYMaps(() => (
+                    <YMap
+                        location={location}
+                        camera={{ tilt: 0, azimuth: 0, duration: 0 }}
+                        ref={map}
+                    >
+                        <YMapDefaultSchemeLayer />
+                        <YMapDefaultFeaturesLayer />
+
+                        <YMapControls position='right'>
+                            <YMapZoomControl />
+                            {/* <YMapGeolocationControl onGeolocatePosition={(pos) => console.log(pos)} ref={geoControl} /> */}
+                        </YMapControls>
+
+                        <YMapClusterer
+                            features={points}
+                            method={clusterByGrid({ gridSize: 64 })}
+                            marker={marker}
+                            cluster={cluster}
+                        />
+
+                        {userCoords ? (
+                            <YMapMarker coordinates={userCoords}>
+                                <UserMarker></UserMarker>
+                            </YMapMarker>
+                        ) : null}
+                    </YMap>
+                ));
+            } catch (e) {
+                setYMaps(<div />);
+            }
+        })();
+    }, [location, coordinates, userCoords]);
+
+    useEffect(() => {
+        console.log(userCoords);
+
+        if (userCoords) {
+            changeCenter(userCoords);
         }
+    }, [userCoords, changeCenter]);
 
-        // создание компонента карты
-        setYMaps(() => (
-          <YMap
-            location={location}
-            camera={{ tilt: 0, azimuth: 0, duration: 0 }}
-            ref={map}
-          >
-            <YMapDefaultSchemeLayer />
-            <YMapDefaultFeaturesLayer />
+    // useEffect(() => {
+    //     console.log(geoControl);
+    //     if (geoControl.current) {
+    //         console.log(geoControl.current);
+    //     }
+    // }, [YMaps]);
 
-            <YMapControls position='right'>
-              <YMapZoomControl />
-              {/* <YMapGeolocationControl onGeolocatePosition={(pos) => console.log(pos)} ref={geoControl} /> */}
-            </YMapControls>
-
-            <YMapClusterer
-              features={points}
-              method={clusterByGrid({ gridSize: 64 })}
-              marker={marker}
-              cluster={cluster}
-            />
-
-            {userCoords ? (
-              <YMapMarker coordinates={userCoords}>
-                <UserMarker></UserMarker>
-              </YMapMarker>
-            ) : null}
-          </YMap>
-        ));
-      } catch (e) {
-        setYMaps(<div />);
-      }
-    })();
-  }, [location, coordinates, userCoords]);
-
-  useEffect(() => {
-    console.log(userCoords);
-
-    if (userCoords) {
-      changeCenter(userCoords);
-    }
-  }, [userCoords, changeCenter]);
-
-  // useEffect(() => {
-  //     console.log(geoControl);
-  //     if (geoControl.current) {
-  //         console.log(geoControl.current);
-  //     }
-  // }, [YMaps]);
-
-  return { YMaps, map, changeCenter, getYMapsPos };
+    return { YMaps, map, changeCenter, getYMapsPos };
 }
 
 // useEffect(() => {

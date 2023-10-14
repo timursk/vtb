@@ -1,242 +1,242 @@
 [
-  {
-    "address": "ул. Богородский Вал, д. 6, корп. 1",
-    "latitude": 55.802432,
-    "longitude": 37.704547,
-    "allDay": false,
-    "services": {
-      "wheelchair": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "blind": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "nfcForBankCards": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "qrRead": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsUsd": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsChargeRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      },
-      "supportsEur": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      }
+    {
+        "address": "ул. Богородский Вал, д. 6, корп. 1",
+        "latitude": 55.802432,
+        "longitude": 37.704547,
+        "allDay": false,
+        "services": {
+            "wheelchair": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "blind": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "nfcForBankCards": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "qrRead": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsUsd": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsChargeRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            },
+            "supportsEur": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            }
+        }
+    },
+    {
+        "address": "ул. Нижняя Красносельская, д. 43",
+        "latitude": 55.773763,
+        "longitude": 37.675002,
+        "allDay": false,
+        "services": {
+            "wheelchair": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "blind": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "nfcForBankCards": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "qrRead": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsUsd": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsChargeRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            },
+            "supportsEur": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            }
+        }
+    },
+    {
+        "address": "ул. Авиаконструктора Миля, д. 4, корп. 1",
+        "latitude": 55.686137,
+        "longitude": 37.849832,
+        "allDay": false,
+        "services": {
+            "wheelchair": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "blind": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "nfcForBankCards": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "qrRead": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsUsd": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsChargeRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            },
+            "supportsEur": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            }
+        }
+    },
+    {
+        "address": "Кадашевская наб., д. 36, стр. 1",
+        "latitude": 55.745726,
+        "longitude": 37.625702,
+        "allDay": false,
+        "services": {
+            "wheelchair": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "blind": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "nfcForBankCards": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "qrRead": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsUsd": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsChargeRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            },
+            "supportsEur": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            }
+        }
+    },
+    {
+        "address": "Новочеркасский б-р, д. 44",
+        "latitude": 55.646284,
+        "longitude": 37.737542,
+        "allDay": false,
+        "services": {
+            "wheelchair": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "blind": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "nfcForBankCards": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "qrRead": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsUsd": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsChargeRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            },
+            "supportsEur": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            }
+        }
+    },
+    {
+        "address": "Нагорный б-р, д. 10",
+        "latitude": 55.67226,
+        "longitude": 37.595707,
+        "allDay": false,
+        "services": {
+            "wheelchair": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "blind": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNKNOWN"
+            },
+            "nfcForBankCards": {
+                "serviceCapability": "UNKNOWN",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "qrRead": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsUsd": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsChargeRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            },
+            "supportsEur": {
+                "serviceCapability": "UNSUPPORTED",
+                "serviceActivity": "UNAVAILABLE"
+            },
+            "supportsRub": {
+                "serviceCapability": "SUPPORTED",
+                "serviceActivity": "AVAILABLE"
+            }
+        }
     }
-  },
-  {
-    "address": "ул. Нижняя Красносельская, д. 43",
-    "latitude": 55.773763,
-    "longitude": 37.675002,
-    "allDay": false,
-    "services": {
-      "wheelchair": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "blind": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "nfcForBankCards": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "qrRead": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsUsd": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsChargeRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      },
-      "supportsEur": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      }
-    }
-  },
-  {
-    "address": "ул. Авиаконструктора Миля, д. 4, корп. 1",
-    "latitude": 55.686137,
-    "longitude": 37.849832,
-    "allDay": false,
-    "services": {
-      "wheelchair": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "blind": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "nfcForBankCards": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "qrRead": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsUsd": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsChargeRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      },
-      "supportsEur": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      }
-    }
-  },
-  {
-    "address": "Кадашевская наб., д. 36, стр. 1",
-    "latitude": 55.745726,
-    "longitude": 37.625702,
-    "allDay": false,
-    "services": {
-      "wheelchair": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "blind": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "nfcForBankCards": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "qrRead": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsUsd": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsChargeRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      },
-      "supportsEur": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      }
-    }
-  },
-  {
-    "address": "Новочеркасский б-р, д. 44",
-    "latitude": 55.646284,
-    "longitude": 37.737542,
-    "allDay": false,
-    "services": {
-      "wheelchair": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "blind": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "nfcForBankCards": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "qrRead": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsUsd": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsChargeRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      },
-      "supportsEur": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      }
-    }
-  },
-  {
-    "address": "Нагорный б-р, д. 10",
-    "latitude": 55.67226,
-    "longitude": 37.595707,
-    "allDay": false,
-    "services": {
-      "wheelchair": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "blind": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNKNOWN"
-      },
-      "nfcForBankCards": {
-        "serviceCapability": "UNKNOWN",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "qrRead": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsUsd": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsChargeRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      },
-      "supportsEur": {
-        "serviceCapability": "UNSUPPORTED",
-        "serviceActivity": "UNAVAILABLE"
-      },
-      "supportsRub": {
-        "serviceCapability": "SUPPORTED",
-        "serviceActivity": "AVAILABLE"
-      }
-    }
-  }
 ]

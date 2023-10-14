@@ -4,12 +4,12 @@ import { ViewButton } from '@/components/ViewButton';
 import { TimeButton } from '@/components/TimeButton';
 
 export default function Home() {
-  return (
-    <>
-      {/* <Header /> */}
-      <Filter />
-      <ViewButton />
-      <TimeButton />
-    </>
-  );
+    return (
+        <>
+            {/* <Header /> */}
+            <Filter />
+            <ViewButton />
+            <TimeButton />
+        </>
+    );
 }

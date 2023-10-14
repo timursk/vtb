@@ -10,19 +10,19 @@ import { useState } from 'react';
 // old api https://yandex.ru/dev/jsapi-v2-1/doc/ru/
 
 export default function TestMap() {
-  const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
-  return (
-    <>
-      <div>TEST</div>
-      <Script
-        src='https://api-maps.yandex.ru/v3/?apikey=9c0f6eee-2954-4fd4-be04-fef1fafef075&lang=ru_RU'
-        onLoad={() => {
-          setIsLoaded(true);
-        }}
-      ></Script>
+    return (
+        <>
+            <div>TEST</div>
+            <Script
+                src='https://api-maps.yandex.ru/v3/?apikey=9c0f6eee-2954-4fd4-be04-fef1fafef075&lang=ru_RU'
+                onLoad={() => {
+                    setIsLoaded(true);
+                }}
+            ></Script>
 
-      {isLoaded ? <Map /> : <span>ЗАГРУЗКА...</span>}
-    </>
-  );
+            {isLoaded ? <Map /> : <span>ЗАГРУЗКА...</span>}
+        </>
+    );
 }

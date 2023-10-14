@@ -14,23 +14,26 @@ import listIcon from '../assets/icons/listIcon.svg';
 import offices from '../store/offices.json';
 
 const ViewButton = () => {
-  const [view, setView] = useState(true);
+    const [view, setView] = useState(true);
 
-  return (
-    <>
-      <button className={styles.view__button} onClick={() => setView(!view)}>
-        <Image
-          src={view ? listIcon : mapIcon}
-          width={20}
-          height={20}
-          alt='map-icon'
-        />
-        <span>{view ? 'Списком' : 'На карте'}</span>
-      </button>
+    return (
+        <>
+            <button
+                className={styles.view__button}
+                onClick={() => setView(!view)}
+            >
+                <Image
+                    src={view ? listIcon : mapIcon}
+                    width={20}
+                    height={20}
+                    alt='map-icon'
+                />
+                <span>{view ? 'Списком' : 'На карте'}</span>
+            </button>
 
-      {view ? <ViewNavigation /> : <ListItems offices={offices} />}
-    </>
-  );
+            {view ? <ViewNavigation /> : <ListItems offices={offices} />}
+        </>
+    );
 };
 
 export { ViewButton };

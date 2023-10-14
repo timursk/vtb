@@ -1,45 +1,45 @@
 .header {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
 }
 
 .header__logo {
-  margin-right: 22%;
-  user-select: none;
+    margin-right: 22%;
+    user-select: none;
 }
 
 .header__nav {
 }
 
 .header__ul {
-  display: flex;
-  align-items: center;
-  list-style: none;
+    display: flex;
+    align-items: center;
+    list-style: none;
 }
 
 .header__ul li {
-  padding-left: 24px;
-  user-select: none;
+    padding-left: 24px;
+    user-select: none;
 }
 
 .header__ul span {
-  padding-left: 16px;
-  cursor: pointer;
-  user-select: none;
+    padding-left: 16px;
+    cursor: pointer;
+    user-select: none;
 
-  color: #000;
-  /* font-family: VTB Group UI; */
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+    color: #000;
+    /* font-family: VTB Group UI; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 @media only screen and (max-width: 1320px) {
-  .header__logo {
-    background-color: red;
-    margin-right: 10%;
-  }
+    .header__logo {
+        background-color: red;
+        margin-right: 10%;
+    }
 }

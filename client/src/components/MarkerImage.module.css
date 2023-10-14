@@ -1,47 +1,47 @@
 .marker {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width: 48px;
-  height: 48px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 24px;
-  box-shadow:
-    0px 2px 8px 0px rgba(0, 15, 71, 0.25),
-    0px 0px 4px 0px rgba(0, 15, 71, 0.08);
-  cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    box-shadow:
+        0px 2px 8px 0px rgba(0, 15, 71, 0.25),
+        0px 0px 4px 0px rgba(0, 15, 71, 0.08);
+    cursor: pointer;
 }
 
 .marker:hover::after {
-  content: '';
-  position: absolute;
-  display: block;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 96px;
-  height: 96px;
-  background-size: contain;
-  background-image: url('./../assets/icons/markerHover.svg');
-  animation: increase 0.3s ease-in-out;
+    content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 96px;
+    height: 96px;
+    background-size: contain;
+    background-image: url('./../assets/icons/markerHover.svg');
+    animation: increase 0.3s ease-in-out;
 }
 
 @keyframes increase {
-  0% {
-    width: 48px;
-    height: 48px;
-  }
-  100% {
-    width: 96px;
-    height: 96px;
-  }
+    0% {
+        width: 48px;
+        height: 48px;
+    }
+    100% {
+        width: 96px;
+        height: 96px;
+    }
 }
 
 .enabled {
-  background: linear-gradient(90deg, #0038fd 0%, #0084ff 100%);
+    background: linear-gradient(90deg, #0038fd 0%, #0084ff 100%);
 }
 .disabled {
-  background: #b5b5b5;
+    background: #b5b5b5;
 }

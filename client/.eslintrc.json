@@ -1,18 +1,18 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"],
+    "extends": ["next/core-web-vitals", "prettier"],
 
-  "rules": {
-    "no-unused-vars": "warn"
-  },
+    "rules": {
+        "no-unused-vars": "warn"
+    },
 
-  "overrides": [
-    // fix "Parsing Error Cannot Find Module Next Babel in next.config.js"
-    {
-      "files": ["next.config.js"],
-      "parser": "espree",
-      "parserOptions": {
-        "ecmaVersion": 2020
-      }
-    }
-  ]
+    "overrides": [
+        // fix "Parsing Error Cannot Find Module Next Babel in next.config.js"
+        {
+            "files": ["next.config.js"],
+            "parser": "espree",
+            "parserOptions": {
+                "ecmaVersion": 2020
+            }
+        }
+    ]
 }
