@@ -1,5 +1,6 @@
 import { useLoadYMaps } from '@/hooks/useLoadYMaps';
 import { LngLat } from '@yandex/ymaps3-types';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 const coordinates: LngLat[] = [
@@ -16,7 +17,14 @@ const coordinates: LngLat[] = [
 ];
 
 export function Map() {
-    const { YMaps, map } = useLoadYMaps({ coordinates });
+    // const searchParams = useSearchParams();
+    // const type = searchParams.get('type');
+
+    // console.log(type);
+
+    const { YMaps, map } = useLoadYMaps({
+        coordinates,
+    });
 
     return <div style={{ width: '100%', height: '100vh' }}>{YMaps}</div>;
 }

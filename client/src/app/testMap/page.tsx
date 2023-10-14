@@ -1,6 +1,9 @@
 'use client';
 
+import { Filter } from '@/components/Filter';
 import { Map } from '@/components/Map';
+import { TimeButton } from '@/components/TimeButton';
+import { ViewButton } from '@/components/ViewButton';
 import Script from 'next/script';
 import { useState } from 'react';
 
@@ -14,7 +17,6 @@ export default function TestMap() {
 
     return (
         <>
-            <div>TEST</div>
             <Script
                 src='https://api-maps.yandex.ru/v3/?apikey=9c0f6eee-2954-4fd4-be04-fef1fafef075&lang=ru_RU'
                 onLoad={() => {
@@ -22,7 +24,18 @@ export default function TestMap() {
                 }}
             ></Script>
 
-            {isLoaded ? <Map /> : <span>ЗАГРУЗКА...</span>}
+            {isLoaded ? (
+                <>
+                    <Filter />
+                    
+                    <Map />
+
+                    <ViewButton />
+                    <TimeButton />
+                </>
+            ) : (
+                <span>ЗАГРУЗКА...</span>
+            )}
         </>
     );
 }
