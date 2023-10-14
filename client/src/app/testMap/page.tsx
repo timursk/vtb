@@ -18,7 +18,6 @@ export default function TestMap() {
             <Script
                 src="https://api-maps.yandex.ru/v3/?apikey=9c0f6eee-2954-4fd4-be04-fef1fafef075&lang=ru_RU"
                 onLoad={() => {
-                    console.log('map loaded');
                     setIsLoaded(true);
                 }}
             ></Script>
