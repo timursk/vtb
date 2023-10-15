@@ -35,6 +35,9 @@ Frontend часть приложения с навигацией по ближа
 Next JS 13, React 18, Radix UI, TypeScript.
 Для карт использовались api Yandex карт ymaps3
 
+### Backend
+Запускался локально через docker compose. Ссылка: https://github.com/KebabJoy/vtbMaps
+
 ### Установка зависимостей и запуск
 ```sh
 git clone https://github.com/timursk/vtb
