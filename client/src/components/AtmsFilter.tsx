@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from '../styles/AtmsFilter.module.css';
 
 import crossIcon from '../assets/icons/crossIcon.svg';
-import hourglassIcon from '../assets/icons/Hourglass.svg';
+import hourglassIcon from '../assets/icons/hourglass.svg';
 import usersIcon from '../assets/icons/Users.svg';
 import matterIcon from '../assets/icons/matter (1).svg';
 import disabledPersonIcon from '../assets/icons/matter (2).svg';
