@@ -107,7 +107,6 @@ export function useLoadYMaps({}: Props) {
 
             // getOffices(userGeo, (offices: IOffices[]) => setOffices(offices));
             // ! захардкожено для отладки
-            // @ts-ignore
             setOffices([
                 { coords: { lat: 55.76, lon: 37.64 }, load_value: 9 },
                 { coords: { lat: 55.7, lon: 37.63 }, load_value: 1 },
@@ -115,7 +114,7 @@ export function useLoadYMaps({}: Props) {
                 { coords: { lat: 55.71, lon: 37.69 }, load_value: 2 },
                 { coords: { lat: 55.76, lon: 37.64 }, load_value: 7 },
                 { coords: { lat: 55.74512566, lon: 37.643123 }, load_value: 5 },
-            ]);
+            ] as any);
 
             setAtms([
                 { coords: { lat: 55.66, lon: 37.54 } },
@@ -124,7 +123,7 @@ export function useLoadYMaps({}: Props) {
                 { coords: { lat: 55.70151515, lon: 37.66155115 } },
                 { coords: { lat: 55.73, lon: 37.62151616 } },
                 { coords: { lat: 55.75512566, lon: 37.643123 } },
-            ]);
+            ] as any);
             // getOffices([37.557116, 55.758706], (offices: Offices[]) => setOffices(offices));
             // getAtms([37.557116, 55.758706], (atms: Atm[]) => setAtms(atms));
         }
