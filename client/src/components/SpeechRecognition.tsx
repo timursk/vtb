@@ -4,18 +4,18 @@ import { Atm } from '@/types/IAtms';
 import { Offices } from '@/types/IOffices';
 import { getNearestAtm, getNearestOffice } from '@/utils/services';
 import { LngLat } from '@yandex/ymaps3-types';
-import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import micro from '@/assets/icons/micro.svg';
+import styles from '@/styles/Filter.module.css';
 
 interface Props {
     geo: LngLat | null;
 }
 
 export const SpeechRecognition = ({ geo }: Props) => {
-    // const searchParams = useSearchParams();
-    // const type = searchParams.get('type');
+    const [recognizer, setRecognizer] = useState(null);
 
-    // const recognizer = new webkitSpeechRecognition();
     useEffect(() => {
         // @ts-ignore
         var recognizer = new webkitSpeechRecognition();
@@ -28,7 +28,8 @@ export const SpeechRecognition = ({ geo }: Props) => {
             if (result.isFinal) {
                 const phrase = result[0].transcript.toLowerCase();
                 console.log('Итог: ', phrase);
-                const isSearch = phrase.includes('найти') || phrase.includes('найди');
+                const isSearch =
+                    phrase.includes('найти') || phrase.includes('найди');
                 const isAtm = phrase.includes('банкомат');
                 const isOffice = phrase.includes('офис');
 
@@ -55,10 +56,12 @@ export const SpeechRecognition = ({ geo }: Props) => {
             }
         };
 
-        window.TEST = recognizer;
+        setRecognizer(recognizer);
     }, []);
 
-    return <button onClick={() => {
-        window.TEST?.start();
-    }}>start speech</button>;
+    return <Image src={micro} alt='microphone' className={styles.searchItem} onClick={() => {
+        if (recognizer) {
+            (recognizer as any).start();
+        }
+    }} />;
 };

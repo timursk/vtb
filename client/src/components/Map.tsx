@@ -46,8 +46,6 @@ export function Map() {
 
     return (
         <>
-            <SpeechRecognition geo={userGeo} />
-
             <Filter geo={userGeo} />
 
             <div style={{ width: '100%', height: '100vh' }}>
