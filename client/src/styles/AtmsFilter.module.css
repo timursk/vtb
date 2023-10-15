@@ -15,7 +15,7 @@
 
 .cross {
     margin-left: 45px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     cursor: pointer;
 }
 
@@ -34,7 +34,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 16px;
 }
 
 .road {
@@ -47,7 +46,6 @@
     border-radius: 8px;
     background: var(--vtb, linear-gradient(90deg, #0038fd 0%, #0084ff 100%));
     color: #fff;
-    margin-bottom: 14px;
     border: none;
     cursor: pointer;
 }
@@ -68,7 +66,6 @@
     border: none;
     background: #f2f7fb;
     color: rgba(10, 40, 150, 1);
-    margin-bottom: 16px;
     cursor: pointer;
 }
 
@@ -128,6 +125,7 @@
 
 .header {
     display: flex;
+    justify-content: space-between;
 }
 
 .support {

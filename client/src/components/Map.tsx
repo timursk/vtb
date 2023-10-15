@@ -7,6 +7,7 @@ import { ViewButton } from './ViewButton';
 import { TimeButton } from './TimeButton';
 import { Filter } from './Filter';
 import { SpeechRecognition } from './SpeechRecognition';
+import { AtmsFilter } from './AtmsFilter';
 
 const coordinates: LngLat[] = [
     [37.64, 55.76],
@@ -45,6 +46,7 @@ export function Map() {
     return (
         <>
             <Filter geo={userGeo} />
+            <AtmsFilter atms={atms} />
 
             <div style={{ width: '100%', height: '100vh' }}>
                 <YMaps>{YMapContent}</YMaps>

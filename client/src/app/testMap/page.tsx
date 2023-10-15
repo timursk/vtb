@@ -1,9 +1,7 @@
 'use client';
 
-import { Filter } from '@/components/Filter';
+import { Loader } from '@/components/Loader';
 import { Map } from '@/components/Map';
-import { TimeButton } from '@/components/TimeButton';
-import { ViewButton } from '@/components/ViewButton';
 import Script from 'next/script';
 import { useState } from 'react';
 
@@ -24,7 +22,7 @@ export default function TestMap() {
                 }}
             ></Script>
 
-            {isLoaded ? <Map /> : <span>ЗАГРУЗКА...</span>}
+            {isLoaded ? <Map /> : <Loader />}
         </>
     );
 }
