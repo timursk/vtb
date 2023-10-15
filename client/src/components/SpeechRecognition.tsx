@@ -55,7 +55,6 @@ export const SpeechRecognition = ({ geo }: Props) => {
             }
         };
 
-        recognizer.start();
         window.TEST = recognizer;
     }, []);
 
