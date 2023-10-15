@@ -37,7 +37,9 @@ const ListItems: React.FC<IListItemsProps> = ({ offices }) => {
         </div>
     ));
 
-    return <div className={styles.main}>{itemsBody}</div>;
+    return <div className={styles.main}>
+        <div className={styles.wrapper}>{itemsBody}</div>
+    </div>;
 };
 
 export { ListItems };

@@ -4,14 +4,22 @@
 }
 
 .main {
-    height: 80vh;
-    width: 46vw;
+    height: 100vh;
+    width: 100vw;
     position: absolute;
-    top: 6%;
-    bottom: 0;
-    right: 0;
+    top: 0;
     left: 0;
-    margin-left: 33%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+}
+
+.wrapper {
+    position: absolute;
+    top: 80px;
+    /* top: 32px; */
+    left: calc(384px + 90px);
+    width: 50vw;
     display: flex;
     flex-wrap: wrap;
 }

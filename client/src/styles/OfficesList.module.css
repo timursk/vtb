@@ -3,7 +3,7 @@
     flex-direction: column;
     /* height: 300px; */
     overflow: auto;
-    max-height: 487px;
+    height: calc(80vh - 257px);
 }
 
 .list li {

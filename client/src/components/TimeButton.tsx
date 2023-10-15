@@ -1,13 +1,15 @@
-'use client'
+'use client';
 
 import Image from 'next/image';
 
 import styles from '../styles/TimeButton.module.css';
 
+import timeActiveIcon from '@/assets/icons/workloadActive.svg';
 import timeIcon from '../assets/icons/timeIcon.svg';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { createQueryString } from '@/utils/helpers';
 import { useState } from 'react';
+import classNames from 'classnames';
 
 const TimeButton = () => {
     const router = useRouter();
@@ -25,16 +27,24 @@ const TimeButton = () => {
 
     return (
         <button
-            className={styles.time__button}
+            className={classNames(
+                styles.time__button,
+                isActive ? styles.active : ''
+            )}
             onClick={() => {
                 const currentIsActive = !isActive;
                 setIsActive(currentIsActive);
 
-                const value = currentIsActive ? String(true) : ''
+                const value = currentIsActive ? String(true) : '';
                 changeFilter('timeComplexity', value);
             }}
         >
-            <Image src={timeIcon} width={20} height={20} alt='map-icon' />
+            <Image
+                src={isActive ? timeActiveIcon : timeIcon}
+                width={20}
+                height={20}
+                alt='map-icon'
+            />
             <span>Время ожидания</span>
         </button>
     );

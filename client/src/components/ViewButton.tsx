@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { ViewNavigation } from './ViewNavigation';
 import { ListItems } from './ListItems';
 
 import styles from '../styles/ViewButton.module.css';
@@ -31,7 +30,7 @@ const ViewButton = () => {
                 <span>{view ? 'Списком' : 'На карте'}</span>
             </button>
 
-            {view ? <ViewNavigation /> : <ListItems offices={offices} />}
+            {view ? null : <ListItems offices={offices} />}
         </>
     );
 };
