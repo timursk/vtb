@@ -70,7 +70,7 @@ export function useLoadYMaps({}: Props) {
                     if (geo) {
                         // setUserGeo(geo);
                         // ! захардкожено для отладки
-                        setUserGeo([37.623082, 55.75254]);
+                        setUserGeo([37.557116, 55.758706]);
                     }
                 }
 
@@ -103,12 +103,30 @@ export function useLoadYMaps({}: Props) {
         if (userGeo) {
             // changeCenter(userGeo);
             // ! захардкожено для отладки
-            changeCenter([37.623082, 55.75254]);
-            
+            changeCenter([37.557116, 55.758706]);
+
             // getOffices(userGeo, (offices: IOffices[]) => setOffices(offices));
             // ! захардкожено для отладки
-            getOffices([37.623082, 55.75254], (offices: Offices[]) => setOffices(offices));
-            getAtms([37.623082, 55.75254], (atms: Atm[]) => setAtms(atms));
+            // @ts-ignore
+            setOffices([
+                { coords: { lat: 55.76, lon: 37.64 }, load_value: 9 },
+                { coords: { lat: 55.7, lon: 37.63 }, load_value: 1 },
+                { coords: { lat: 55.69, lon: 37.43 }, load_value: 3 },
+                { coords: { lat: 55.71, lon: 37.69 }, load_value: 2 },
+                { coords: { lat: 55.76, lon: 37.64 }, load_value: 7 },
+                { coords: { lat: 55.74512566, lon: 37.643123 }, load_value: 5 },
+            ]);
+
+            setAtms([
+                { coords: { lat: 55.66, lon: 37.54 } },
+                { coords: { lat: 55.7412512, lon: 37.4251551 } },
+                { coords: { lat: 55.661515152, lon: 37.73 } },
+                { coords: { lat: 55.70151515, lon: 37.66155115 } },
+                { coords: { lat: 55.73, lon: 37.62151616 } },
+                { coords: { lat: 55.75512566, lon: 37.643123 } },
+            ]);
+            // getOffices([37.557116, 55.758706], (offices: Offices[]) => setOffices(offices));
+            // getAtms([37.557116, 55.758706], (atms: Atm[]) => setAtms(atms));
         }
     }, [userGeo, changeCenter]);
 
