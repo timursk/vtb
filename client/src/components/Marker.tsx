@@ -15,13 +15,26 @@ export function Marker({
     timeComplexity,
     count,
 }: Props) {
-    loadPercent = loadPercent || 0;
+    loadPercent = loadPercent ? (loadPercent * 10) : 0;
+    const step = 100 / 15;
+    const stepsCount = Math.floor(loadPercent / step);
+    const minutes = (15 - stepsCount);
+    let time = loadPercent ? `~ ${minutes} минут` : null;
+
+    if (time && minutes) {
+        if (minutes === 1) {
+            time += 'a';
+        }
+        else if (minutes >= 2 && minutes <= 4) {
+            time += 'ы';
+        }
+    }
 
     return (
         <div className={styles.container}>
             <MarkerImage isActive={isActive} loadPercent={loadPercent} count={count} />
             
-            {timeComplexity ? <MarkerTime time={'~ 15 минут'} /> : null}
+            {(timeComplexity && time && isActive) ? <MarkerTime time={time} /> : null}
         </div>
     );
 }

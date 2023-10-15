@@ -6,6 +6,7 @@ import React from 'react';
 import { ViewButton } from './ViewButton';
 import { TimeButton } from './TimeButton';
 import { Filter } from './Filter';
+import { SpeechRecognition } from './SpeechRecognition';
 
 const coordinates: LngLat[] = [
     [37.64, 55.76],
@@ -39,6 +40,7 @@ export function Map() {
     if (!YMaps) {
         return;
     }
+    console.log(offices, atms);
 
     return (
         <>
