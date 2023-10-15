@@ -6,6 +6,7 @@ import * as Tabs from '@radix-ui/react-tabs';
 
 import { OfficesList } from './OfficesList';
 import { AtmsList } from './AtmsList';
+import { OfficesFilter } from './OfficesFilter';
 
 import styles from '../styles/Filter.module.css';
 
@@ -17,7 +18,6 @@ import vtbLogo from '../assets/vtb.svg';
 
 import offices from '../store/offices.json';
 import atms from '../store/atms.json';
-import { OfficesFilter } from './OfficesFilter';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { createQueryString, debounce } from '@/utils/helpers';
 import { LngLat } from '@yandex/ymaps3-types';
@@ -42,7 +42,7 @@ const Filter = ({ geo }: Props) => {
 
     const [activeTab, setActiveTab] = useState(false);
 
-    const [query, setQuery] = useState('');
+    // const [query, setQuery] = useState('');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const changeInputQuery = useCallback(
@@ -53,7 +53,7 @@ const Filter = ({ geo }: Props) => {
     );
 
     const handleChange = (e: any) => {
-        setQuery(e.target.value);
+        // setQuery(e.target.value);
         changeInputQuery(e.target.value);
     };
 
@@ -81,7 +81,6 @@ const Filter = ({ geo }: Props) => {
                         className={styles.input}
                         type='text'
                         placeholder='Город, улица, метро'
-                        value={query}
                         onChange={handleChange}
                     />
                 </label>
@@ -173,7 +172,7 @@ const Filter = ({ geo }: Props) => {
                 </Tabs.Root>
             </div>
 
-            {activeTab && <OfficesFilter />}
+            {activeTab && <OfficesFilter active={activeTab} />}
         </div>
     );
 };
