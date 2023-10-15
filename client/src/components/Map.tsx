@@ -41,7 +41,6 @@ export function Map() {
     if (!YMaps) {
         return;
     }
-    console.log(offices, atms);
 
     return (
         <>
