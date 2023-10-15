@@ -12,6 +12,7 @@ import styles from '../styles/Filter.module.css';
 
 import navigationPointer from '../assets/icons/navigationPointer.svg';
 import settings from '../assets/icons/settings.svg';
+import micro from '@/assets/icons/micro.svg';
 import microphone from '../assets/icons/microphone.svg';
 import vtbLogo from '../assets/vtb.svg';
 
@@ -23,6 +24,8 @@ import { LngLat } from '@yandex/ymaps3-types';
 import { getNearestAtm, getNearestOffice } from '@/utils/services';
 import { Offices } from '@/types/IOffices';
 import { Atm } from '@/types/IAtms';
+import classNames from 'classnames';
+import { SpeechRecognition } from './SpeechRecognition';
 
 interface Props {
     geo: LngLat | null;
@@ -80,18 +83,13 @@ const Filter = ({ geo }: Props) => {
                         placeholder='Город, улица, метро'
                         onChange={handleChange}
                     />
-                    <Image
-                        src={microphone}
-                        alt='microphone'
-                        style={{ cursor: 'pointer' }}
-                    />
                 </label>
+
+                <SpeechRecognition geo={geo} />
+
                 <div
-                    className={styles.settings}
-                    onClick={() => {
-                        setActiveTab(!activeTab);
-                        console.log(activeTab, ' = activeTab');
-                    }}
+                    className={classNames(styles.settings, styles.searchItem)}
+                    onClick={() => setActiveTab(true)}
                 >
                     <Image src={settings} alt='settings' />
                 </div>
