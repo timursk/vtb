@@ -110,8 +110,9 @@ export function useGetYMapContent({
                         id: i,
                         geometry: { coordinates },
                         properties: {
-                            isActive: Math.random() > 0.3,
-                            loadPercent: Math.floor(Math.random() * 100) + 1,
+                            isActive: Math.random() > 0.2,
+                            loadPercent: (item as any).load_value ,
+                            // loadPercent: Math.floor(Math.random() * 100) + 1,
                             idx: i
                         },
                     };

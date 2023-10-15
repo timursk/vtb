@@ -32,6 +32,7 @@ interface Offices {
     open_hours_individual: IOpenHours[];
     status: string;
     rko: boolean;
+    load_value: number;
 
     office_type: string;
     sale_point_format: string;

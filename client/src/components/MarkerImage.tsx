@@ -67,7 +67,7 @@ export function MarkerImage({ isActive, loadPercent, count }: Props) {
 
             {!count ? Logo : null}
             
-            {Loader}
+            {loadPercent ? Loader : null}
         </div>
     );
 }
