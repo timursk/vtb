@@ -15,9 +15,14 @@
     top: 0;
     right: 0;
     margin: 100px 32px;
+    color: var(--primary, rgba(10, 40, 150, 1));
 }
 
 .time__button span {
-    color: var(--primary, rgba(10, 40, 150, 1));
     margin-left: 10px;
+}
+
+.active {
+    color: #fff;
+    background-color: #0D69F2;
 }

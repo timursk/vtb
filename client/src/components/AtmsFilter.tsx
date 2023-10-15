@@ -7,8 +7,21 @@ import hourglassIcon from '../assets/icons/hourglass.svg';
 import usersIcon from '../assets/icons/Users.svg';
 import matterIcon from '../assets/icons/matter (1).svg';
 import disabledPersonIcon from '../assets/icons/matter (2).svg';
+import { Atm } from '@/types/IAtms';
+import { useSearchParams } from 'next/navigation';
 
-const AtmsFilter = () => {
+interface Props {
+    atms: Atm[];
+}
+
+const AtmsFilter = ({ atms }: Props) => {
+    const searchParams = useSearchParams();
+    const index = +(searchParams.get('idx') || 0);
+
+    if (!index || !atms || !atms[index]) {
+        return null;
+    }
+
     return (
         <div className={styles.filter}>
             <div className={styles.header}>
@@ -93,11 +106,11 @@ const AtmsFilter = () => {
             <span className={styles.worktime__text}>Время работы</span>
             <span className={styles.face}>Для физических лиц</span>
             <span className={styles.worktime}>пн-вс: 10:00-22:00</span>
-            <span className={styles.near__metro}>Ближайшая станция метро</span>
+            {/* <span className={styles.near__metro}>Ближайшая станция метро</span>
             <span className={styles.metro}>м. Площадь Революции </span>
             <span className={styles.metro__info}>
                 Арабатско-Покровская линия • 245 м
-            </span>
+            </span> */}
         </div>
     );
 };
