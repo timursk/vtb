@@ -88,10 +88,7 @@ const Filter = ({ geo }: Props) => {
                 </label>
                 <div
                     className={styles.settings}
-                    onClick={() => {
-                        setActiveTab(!activeTab);
-                        console.log(activeTab, ' = activeTab');
-                    }}
+                    onClick={() => setActiveTab(!activeTab)}
                 >
                     <Image src={settings} alt='settings' />
                 </div>

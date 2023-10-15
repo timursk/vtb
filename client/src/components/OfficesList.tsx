@@ -12,9 +12,7 @@ interface IOfficesProps {
 
 const OfficesList: React.FC<IOfficesProps> = ({ offices }) => {
     // const officesTimeFormatter = (time: string) => {
-    //   let kek = time.split(' ')[0];
-    //   console.log(kek);
-    //   return kek;
+    //   return time.split(' ');
     // };
 
     const officeBody = offices.map((item: any, idx: number) => (
@@ -31,10 +29,9 @@ const OfficesList: React.FC<IOfficesProps> = ({ offices }) => {
                     09:00-22:00
                 </span>
                 {/* {item.openHoursIndividual.map((hour: any, idx: number) => (
-          
-            {hour.hours === 1 ? hour.hours : ''}
-          </span>
-        ))} */}
+                    {hour.hours === 1 ? hour.hours : ''}
+                </span>
+                ))} */}
             </div>
             <div className={styles.second__block}>
                 <span>2.1 км</span>

@@ -25,11 +25,7 @@ const OfficesFilter: React.FC<IOfficesFilterProps> = ({ active }) => {
                 <span className={styles.header__text}>Санкт-Петербург</span>
                 <span
                     className={styles.cross}
-                    onClick={() => {
-                        setIsActive(false);
-                        console.log(active, ' = active');
-                        console.log(isActive, ' = isActive');
-                    }}
+                    onClick={() => setIsActive(false)}
                 >
                     <Image src={crossIcon} alt='cross' />
                 </span>

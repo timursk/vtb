@@ -24,8 +24,6 @@ export function Map() {
     // const searchParams = useSearchParams();
     // const type = searchParams.get('type');
 
-    // console.log(type);
-
     const { YMaps, map, userGeo, offices, atms, changeCenter, getYMapsPos } =
         useLoadYMaps({});
 
